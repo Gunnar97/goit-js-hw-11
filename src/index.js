@@ -66,7 +66,7 @@ function renderList(arr) {
     if (Array.isArray(arr)) {
         const listPhoto = arr.map(photo => `<div class="photo-card">
        <li class="gallery__item">
-        <a class="gallery__link" href="${photo.largeImageURL}"><img class="gallery__image" src="${photo.webformatURL}" alt="${photo.tags}" title=""/>
+        <a class="gallery__link" href="${photo.largeImageURL}"><img class="gallery__image" src="${photo.webformatURL}" alt="${photo.tags}" title=""/></a>
   <div class="info">
     <p class="info-item">
       <b>Likes: ${photo.likes}</b>
@@ -81,8 +81,6 @@ function renderList(arr) {
       <b>Downloads: ${photo.downloads}</b>
     </p>
   </div>
-</div>
-</a>
 </li>`).join('')
         refs.gallery.insertAdjacentHTML('beforeend', listPhoto);
         let lightbox = new SimpleLightbox('.gallery a', {
