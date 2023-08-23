@@ -4,11 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page title</title>
+    <link rel="stylesheet" href="./css/css-button.css">
     <link rel="stylesheet" href="./css/common.css" />
     
   </head>
   <body>
-    
+    <form class="search-form" id="search-form">
+      <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+      <button type="submit">Search</button>
+    </form>
+    <ul class="gallery">
+      <!-- Карточки изображений -->
+    </ul>
+    <div class="js-guard"></div>
+    <div class="btn-up btn-up_hide"></div>
+
     <script type="module" src="./index.js"></script>
+    <script type="module" src="./button.js"></script>
   </body>
 </html>

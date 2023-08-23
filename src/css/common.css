@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+input {
+    padding: 8px;
+    font: inherit;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* ======================== RESET ================= */
+
+.link {
+    text-decoration: none;
+    color: currentColor;
+}
+
+button {
+    color: currentColor;
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+/* ======================== /RESET ================= */
+.search-form{
+    
+    display: block;
+    margin-bottom: 32px;
+    background-color: blueviolet;
+    text-align: center;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    
+}
+
+
+
+
+
+.info {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 32px;
+    
+} 
+
+.gallery__item{
+    display: block;
+    margin: 0;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    
+}
+
