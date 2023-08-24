@@ -135,8 +135,10 @@ function onLoad(entries, observer) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             if (currentPage*page >= totalEl || currentPage*page >= 500) {
-              observer.unobserve(refs.target) 
-              Notiflix.Report.info("info", "We're sorry, but you've reached the end of search results.")
+              observer.unobserve(refs.target)
+              if (totalEl > 40) {
+                 Notiflix.Report.info("info", "We're sorry, but you've reached the end of search results.")
+              }
             }
             else {
               currentPage += 1;
