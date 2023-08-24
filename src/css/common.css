@@ -4,6 +4,7 @@
 
 body {
     scroll-behavior: smooth;
+    background-color: beige;
 }
 
 input {
@@ -13,7 +14,6 @@ input {
 
 button {
     padding: 8px 12px;
-    cursor: pointer;
 }
 
 /* ======================== RESET ================= */
@@ -65,65 +65,88 @@ img {
     overflow: hidden;
 }
 
+
 /* ======================== /RESET ================= */
 .search-form{
     
     display: block;
     margin-bottom: 32px;
+    padding: 16px;
     background-color: blueviolet;
     text-align: center;
+    border-radius: 24px;
 }
+
+input{
+    margin-right: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 400px;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.btn {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 25px;
+    margin: 0 15px 15px 0;
+    outline: none;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #444;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+    cursor: pointer;
+    user-select: none;
+    appearance: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    transition: box-shadow 0.2s;
+}
+
+.btn:hover {
+    transition: all 0.2s;
+    box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+}
+
+.btn:active {
+    background-color: #808080;
+    box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+}
+
 
 
 
 .gallery {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-.gallery__item {
-    margin-bottom: 24px;
-    position: relative;
-   
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-}
-
-.gallery__image:hover {
-    transform: scale(1.03);
-}
-
-.gallery__image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: transform var(--animation-duration) var(--timing-function);
-}
-
-.gallery__link {
-    display: block;
-    text-decoration: none;
-    height: 100%;
-}
-
-.gallery__link:hover {
-    cursor: zoom-in;
+   display: flex;
+   gap:24px;
+   flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .info{
     display: flex;
-    gap:16px;
+    gap: 24px;
     text-align: center;
-    margin-top: 24px;
-    padding-bottom: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    justify-content: center;
+    padding: 16px;
+    background-color: aliceblue
+    border-radius: 24px;
 }
 
-
-
-
+.photo-card{
+    width: 450px;
+    border-radius: 24px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+            0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
