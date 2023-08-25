@@ -4,43 +4,44 @@ import Notiflix from 'notiflix';
 const URL = 'https://pixabay.com/api/'
 const KEY = '39007065-0db3fa1240dd246ce2d69362f'
 
-let images;
-let q = '';
-export function setQ(newValue) {q = newValue};
-export let currentPage = 1;
-export function setCurrentPage(newValue) {currentPage = newValue};
-export const page = 40;
-export let totalEl;
 
+
+
+export const queryParam = {
+  q: '',
+  currentPage: 1,
+  page: 40,
+  totalEl: 0
+};
 
 export async function fetchPhoto() {
   const PARAMS = new URLSearchParams({
     key: KEY,
-    q: q,
+    q: queryParam.q,
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true,
-    page: currentPage,
-    per_page: page,
+    page: queryParam.currentPage,
+    per_page: queryParam.page,
   });
+  let images;
   try {
     const response = await axios.get(`${URL}?${PARAMS}`);
-    totalEl = response.data.total;
-    if (currentPage === 1) {
-      if (totalEl < 500) {
-    Notiflix.Notify.success("Hooray! We found "+totalEl+" images!");
+    queryParam.totalEl = response.data.total;
+    if (queryParam.currentPage === 1) {
+      if (queryParam.totalEl < 500) {
+    Notiflix.Notify.success("Hooray! We found "+queryParam.totalEl+" images!");
       }
     else {
     Notiflix.Notify.success("Hooray! We found 500 images!");
       };
-    } else if (currentPage > 1) {
+    } else if (queryParam.currentPage > 1) {
       Notiflix.Notify.info('You have loaded the following page!');
     };
-    if (totalEl === 0) {
+    if (queryParam.totalEl === 0) {
        Notiflix.Report.info("info", "Sorry, there are no images matching your search query. Please try again.")
     } else {
       images = response.data.hits;
-      
     };
     return images;
   } catch (error) {
@@ -49,6 +50,7 @@ export async function fetchPhoto() {
       'Oops! Something went wrong! Try reloading the page!',
       'Okay'
     );
+    return null;
   };
 };
 

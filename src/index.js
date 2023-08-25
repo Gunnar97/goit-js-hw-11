@@ -1,63 +1,82 @@
-import { refs } from "./js/refs";
+import { refs } from './js/refs.js';
 import Notiflix from 'notiflix';
-import { fetchPhoto, totalEl, page, currentPage, setCurrentPage, setQ } from "./js/query";
-import { renderList } from "./js/render";
-import { btnUp } from "./js/button";
+import {
+  fetchPhoto,
+  queryParam
+} from './js/query';
+import { renderList } from './js/render.js';
+import { btnUp } from './js/button.js';
 
 btnUp.addEventListener();
 
 refs.searchForm.addEventListener('submit', onSubmit);
 
-function onSubmit(eve) {
+async function onSubmit(eve) {
     eve.preventDefault();
-    setQ(refs.input.value);
-    setCurrentPage(1);
+    queryParam.q = refs.input.value;
+    queryParam.currentPage = 1;
   if (!refs.input.value.trim()) {
-      Notiflix.Report.warning(
-'Warning','The input field must be filled!','Okay',
+    Notiflix.Report.warning(
+      'Warning',
+      'The input field must be filled!',
+      'Okay'
     );
-    return
-    };
+    return;
+  }
   refs.gallery.innerHTML = '';
-    observer.unobserve(refs.target)
-    fetchPhoto().then((images) => {
-        renderList(images)
-        observer.observe(refs.target);
-    }
-    )
-    refs.input.value = '';
-};
-
+  observer.unobserve(refs.target);
+  try {
+    const images = await fetchPhoto();
+    renderList(images);
+    observer.observe(refs.target);
+  } catch (error) {
+    Notiflix.Report.failure(
+      'ERROR',
+      'Oops! Something went wrong! Try reloading the page!',
+      'Okay'
+    );
+  }
+  refs.input.value = '';
+}
 
 let options = {
-    root: null,
-    rootMargin: "400px",
-    threshold: 1.0,
+  root: null,
+  rootMargin: '400px',
+  threshold: 1.0,
 };
 
 let observer = new IntersectionObserver(onLoad, options);
 function onLoad(entries, observer) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            if (currentPage*page >= totalEl || currentPage*page >= 500) {
-              observer.unobserve(refs.target)
-              if (totalEl > 40) {
-                 Notiflix.Report.info("info", "We're sorry, but you've reached the end of search results.")
-                };
-            }
-            else {
-              setCurrentPage(currentPage + 1);
-                fetchPhoto().then((images) => {
-                    renderList(images);
-                });
-                    const { height: cardHeight } = document
-                    .querySelector(".gallery")
-                    .firstElementChild.getBoundingClientRect();
-                    window.scrollBy({
-                    top: cardHeight * 2,
-                    behavior: "smooth",
-              });
-            };
-        };
-    });  
-};
+  entries.forEach(async (entry) => {
+    if (entry.isIntersecting) {
+      if (queryParam.currentPage * queryParam.page >= queryParam.totalEl || queryParam.currentPage * queryParam.page >= 500) {
+        observer.unobserve(refs.target);
+        if (queryParam.totalEl > 40) {
+          Notiflix.Report.info(
+            'info',
+            "We're sorry, but you've reached the end of search results."
+          );
+        }
+      } else {
+          try {
+            queryParam.currentPage += 1;
+            const images = await fetchPhoto();
+            renderList(images);
+        } catch (error) {
+          Notiflix.Report.failure(
+            'ERROR',
+            'Oops! Something went wrong! Try reloading the page!',
+            'Okay'
+          );
+        }
+        const { height: cardHeight } = document
+          .querySelector('.gallery')
+          .firstElementChild.getBoundingClientRect();
+        window.scrollBy({
+          top: cardHeight * 2,
+          behavior: 'smooth',
+        });
+      }
+    }
+  });
+}

@@ -13,7 +13,7 @@ export function renderList(arr) {
     if (Array.isArray(arr)) {
       const listPhoto = arr.map(photo => `<div class="photo-card">
         <a class="gallery__link" href="${photo.largeImageURL}">
-      <img class="gallery__image" src="${photo.webformatURL}" alt="${photo.tags}" />
+      <img class="gallery__image" src="${photo.webformatURL}" alt="${photo.tags}" loading="lazy" />
    </a>
         <div class="info">
           <p class="info-item">
