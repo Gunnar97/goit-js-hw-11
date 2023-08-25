@@ -4,7 +4,7 @@
 
 body {
     scroll-behavior: smooth;
-    background-color: beige;
+    background-color:rgb(246, 222, 190);
 }
 
 input {
@@ -140,16 +140,17 @@ input{
     text-align: center;
     justify-content: center;
     padding: 16px;
-    background-color: aliceblue
     border-radius: 24px;
 }
 .gallery__image{
     border-radius: 24px;
+    
 }
 
 .photo-card{
     width: 450px;
     border-radius: 24px;
+    background-color:burlywood;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
             0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
