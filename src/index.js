@@ -11,7 +11,7 @@ refs.searchForm.addEventListener('submit', onSubmit);
 function onSubmit(eve) {
     eve.preventDefault();
     setQ(refs.input.value);
-    currentPage = 1;
+    setCurrentPage(1);
   if (!refs.input.value.trim()) {
       Notiflix.Report.warning(
 'Warning','The input field must be filled!','Okay',
